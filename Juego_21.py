@@ -61,7 +61,7 @@ def turnoMaquina(cartas):
         print cartas
     if (obtenerPuntaje(cartas[1]) < 21 and (obtenerPuntaje(cartas[1]) <= obtenerPuntaje(cartas[0]))):
         if (obtenerPuntaje(cartas[1]) == obtenerPuntaje(cartas[0])):
-            print ("empate")
+            print ("empate, maquina ha ganado")
             print cartas
         else:
             print ("maquina ha sacado una carta")
