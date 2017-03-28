@@ -53,33 +53,35 @@ def turnoJugador(cartas):
 
 """""Parte que desarrolla el juego de la maquina"""
 def turnoMaquina(cartas):
-    if (obtenerPuntaje(cartas[1]) > 21):
-        print ("Jugador ha ganado")
-        print cartas
-    if (obtenerPuntaje(cartas[1]) < 21 and (obtenerPuntaje(cartas[1]) > obtenerPuntaje(cartas[0]))):
-        print("Maquina gana")
-        print cartas
     if (obtenerPuntaje(cartas[1]) < 21 and (obtenerPuntaje(cartas[1]) <= obtenerPuntaje(cartas[0]))):
         if (obtenerPuntaje(cartas[1]) == obtenerPuntaje(cartas[0])):
-            print ("empate, maquina ha ganado")
+            print ("empate, maquina gana")
             print cartas
         else:
             print ("maquina ha sacado una carta")
             cartas[1].insert(len(cartas[1]), analizarCarta(darMazo()[0][random.randint(0, 12)]))
-            return Juego(cartas, 'R')
+            print(cartas)
+            return Juego(cartas, 'M')
+    if (obtenerPuntaje(cartas[1]) > 21):
+        print ("Jugador ha ganado")
+        print cartas
+    if (obtenerPuntaje(cartas[1]) <= 21 and (obtenerPuntaje(cartas[1]) > obtenerPuntaje(cartas[0]))):
+        print("Maquina gana")
+        print cartas
+
 
 """""Parte del juego donde se asignan las cartas a jugar y cuando juega la maquina"""
-def Juego(cartas, jug):
+def Juego(mazo, jug):
     #print cartas
-    if (cartas[0] == []):
+    if (mazo[0] == []):
         print ("Reparte cartas al jugador y al repartidor")
-        return Juego(repartirCartas(cartas), 'J')
-    elif (len(cartas[0]) == 1):
+        return Juego(repartirCartas(mazo), 'J')
+    elif (len(mazo[0]) == 1):
         print ("Reparte cartas jugador y al repartidor")
-        return Juego(repartirCartas(cartas), 'J')
+        return Juego(repartirCartas(mazo), 'J')
     if (jug == "M"):
-        turnoMaquina(cartas)
-    elif (len(cartas[0]) >= 2 and (jug == "J")):
-        turnoJugador(cartas)
+        turnoMaquina(mazo)
+    elif (len(mazo[0]) >= 2 and (jug == "J")):
+        turnoJugador(mazo)
 
 Juego([[], []], 'J')
